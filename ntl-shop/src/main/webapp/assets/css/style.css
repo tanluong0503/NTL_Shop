@@ -1,0 +1,52 @@
+.btn-created {
+    float: right;
+    margin:0 120px 8px 0;
+    border: 5px solid;
+    font-size: initial;
+    padding-bottom: 10px;
+    border-radius: 6px;
+}
+.btn-update {
+    float: left;
+    font-size: 13px;
+    border-radius: 5px;
+}
+.btn-update:hover {
+    border: 5px solid;
+}
+.btn-delete {
+    float: left;
+    border-radius: 6px;
+    background-color: #a92222;
+    font-size: 13px;
+}
+.btn-delete:hover {
+    border-radius: 6px;
+    background-color: red;
+}
+.logo-box {
+    padding: 20px 60px;
+}
+.action {
+    padding-right: 0;
+}
+
+.table thead th {
+    text-align: center;
+}
+.navbar-custom {
+    margin-top: -22px;
+}
+.col-12 {
+    text-align: center;
+}
+
+label.error {
+    display: list-item;
+    margin-top: 5px;
+    color: #ffffff;
+    font-size: 14px;
+}
+.show{
+    padding-left: 29px;
+}

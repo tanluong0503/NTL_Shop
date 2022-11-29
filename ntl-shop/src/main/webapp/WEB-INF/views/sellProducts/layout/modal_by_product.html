@@ -1,0 +1,68 @@
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<th:block th:fragment="modal_by_product">
+    <div id="modal_by_product" class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
+        <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content" style="position: fixed; width: 1020px;height: 631px; margin-top: 10px; margin-left: -257px;">
+                <div class="modal-header row">
+                    <h5 class="modal-title">INFO FRODUCT</h5></div>
+                      <div class="logo_container">
+                              <a href="#">colo<span>shop</span></a>
+                       </div>
+                <div class="modal-body row">
+                    <img id="imageShow" src="" style="width: 445px;height: 408px;">
+                    <div style="  position: fixed;  margin-left: 501px;  margin-top: -12px; top: 86px;">
+                        <form style="    width: 1000px;">
+                            <div class="form-group row">
+                                <label for="idShow" class="col-sm-2 col-form-label">id</label>
+                                <div class="col-sm-10">
+                                    <input type="text" readonly class="form-control-plaintext" id="idShow" >
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="productNameShow" class="col-sm-2 col-form-label">Name</label>
+                                <div class="col-sm-10">
+                                    <input type="text" readonly class="form-control-plaintext" id="productNameShow">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="categoryShow" class="col-sm-2 col-form-label">Loại sản phẩm</label>
+                                <div class="col-sm-10">
+                                    <input type="text" readonly class="form-control-plaintext" id="categoryShow" >
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="quantityShow" class="col-sm-2 col-form-label">Số lượng còn lại</label>
+                                <div class="col-sm-10">
+                                    <input type="text" readonly class="form-control-plaintext" id="quantityShow" >
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="priceShow" class="col-sm-2 col-form-label">Giá sản phẩm</label>
+                                <div class="col-sm-10">
+                                    <input type="text" readonly class="form-control-plaintext" id="priceShow" >
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="createdAtShow" class="col-sm-2 col-form-label">Ngày bán</label>
+                                <div class="col-sm-10">
+                                    <input type="text" readonly class="form-control-plaintext" id="createdAtShow" >
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="descriptionShow" class="col-sm-2 col-form-label">Mô tả sản phẩm</label>
+                                <div class="col-sm-10">
+                                    <input type="text" readonly class="form-control-plaintext" id="descriptionShow" >
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="closes" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</th:block>

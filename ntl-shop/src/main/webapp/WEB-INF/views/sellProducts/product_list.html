@@ -1,0 +1,273 @@
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <title>Colo Shop</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="Responsive bootstrap 4 admin template" name="description">
+    <meta content="Coderthemes" name="author">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" type="text/css" href="/assets/sellProduct/styles/bootstrap4/bootstrap.min.css">
+    <link href="/assets/sellProduct/plugins/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="/assets/sellProduct/plugins/OwlCarousel2-2.2.1/owl.carousel.css">
+    <link rel="stylesheet" type="text/css" href="/assets/sellProduct/plugins/OwlCarousel2-2.2.1/owl.theme.default.css">
+    <link rel="stylesheet" type="text/css" href="/assets/sellProduct/plugins/OwlCarousel2-2.2.1/animate.css">
+    <link rel="stylesheet" type="text/css" href="/assets/sellProduct/styles/main_styles.css">
+    <link rel="stylesheet" type="text/css" href="/assets/sellProduct/styles/responsive.css">
+
+    <link rel="shortcut icon" href="/assets/sellProduct/images/favicon.ico">
+    <link rel="stylesheet" href="/assets/sellProduct/css/iziToast-1.4.0.min.css">
+    <link rel="stylesheet" href="/assets/sellProduct/css/sweetalert.min.css">
+</head>
+<body>
+<div class="super_container">
+    <header class="header trans_300">
+        <th:block th:replace="/sellProducts/layout/main_nav_container.html"/>
+
+    </header>
+
+    <div class="fs_menu_overlay"></div>
+    <th:block th:replace="/sellProducts/layout/hamburger_menu.html"/>
+
+    <div class="hamburger_menu">
+        <div class="hamburger_close"><i class="fa fa-times" aria-hidden="true"></i></div>
+        <div class="hamburger_menu_content text-right">
+            <ul class="menu_top_nav">
+                <li class="menu_item has-children">
+                    <a href="#">
+                        usd
+                        <i class="fa fa-angle-down"></i>
+                    </a>
+                    <ul class="menu_selection">
+                        <li><a href="#">cad</a></li>
+                        <li><a href="#">aud</a></li>
+                        <li><a href="#">eur</a></li>
+                        <li><a href="#">gbp</a></li>
+                    </ul>
+                </li>
+                <li class="menu_item has-children">
+                    <a href="#">
+                        English
+                        <i class="fa fa-angle-down"></i>
+                    </a>
+                    <ul class="menu_selection">
+                        <li><a href="#">French</a></li>
+                        <li><a href="#">Italian</a></li>
+                        <li><a href="#">German</a></li>
+                        <li><a href="#">Spanish</a></li>
+                    </ul>
+                </li>
+                <li class="menu_item has-children">
+                    <a href="#">
+                        My Account
+                        <i class="fa fa-angle-down"></i>
+                    </a>
+                    <ul class="menu_selection">
+                        <li><a href="#"><i class="fa fa-sign-in" aria-hidden="true"></i>Sign In</a></li>
+                        <li><a href="#"><i class="fa fa-user-plus" aria-hidden="true"></i>Register</a></li>
+                    </ul>
+                </li>
+                <li class="menu_item"><a href="#">home</a></li>
+                <li class="menu_item"><a href="#">shop</a></li>
+                <li class="menu_item"><a href="#">promotion</a></li>
+                <li class="menu_item"><a href="#">pages</a></li>
+                <li class="menu_item"><a href="#">blog</a></li>
+                <li class="menu_item"><a href="#">contact</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="new_arrivals">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col text-center">
+                    <div class="new_arrivals_sorting">
+                        <ul class="arrivals_grid_sorting clearfix button-group filters-button-group">
+                            <li class="grid_sorting_button button d-flex flex-column justify-content-center align-items-center active is-checked"
+                                data-filter="*">all
+                            </li>
+                            <li class="grid_sorting_button button d-flex flex-column justify-content-center align-items-center"
+                                data-filter=".women">women's
+                            </li>
+                            <li class="grid_sorting_button button d-flex flex-column justify-content-center align-items-center"
+                                data-filter=".accessories">accessories
+                            </li>
+                            <li class="grid_sorting_button button d-flex flex-column justify-content-center align-items-center"
+                                data-filter=".men">men's
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="input-group-append">
+        <input type="search" class="form-control" placeholder="Search..." id="searchProduct" style="  width: 300px;">
+        <button class="btn" id="btnSearchProduct">
+            <i class="fa fa-search" aria-hidden="true"></i>
+        </button>
+    </div>
+    <th:block th:replace="/sellProducts/layout/modal_by_product.html"/>
+</div>
+<div class="container">
+    <div class="product-grid"
+         data-isotope='{ "itemSelector": ".product-item", "layoutMode": "fitRows" }'>
+        <div id="panel-product">
+
+        </div>
+    </div>
+</div>
+<script src="/assets/sellProduct/plugins/Isotope/isotope.pkgd.min.js"></script>
+<script src="/assets/sellProduct/js/vendor.min.js"></script>
+<script src="/assets/sellProduct/libs/peity/jquery.peity.min.js"></script>
+<script src="/assets/sellProduct/libs/apexcharts/apexcharts.min.js"></script>
+<script src="/assets/sellProduct/libs/jquery-vectormap/jquery-jvectormap-1.2.2.min.js"></script>
+<script src="/assets/sellProduct/libs/jquery-vectormap/jquery-jvectormap-us-merc-en.js"></script>
+<script src="/assets/sellProduct/js/pages/app.min.js"></script>
+<script src="/assets/sellProduct/js/pages/app.min.js"></script>
+<script src="/assets/sellProduct/js/jquery-3.6.0.min.js"></script>
+<script src="/assets/sellProduct/js/jquery.validate-1.19.3.min.js"></script>
+<script src="/assets/sellProduct/js/iziToast-1.4.0.js"></script>
+<script src="/assets/sellProduct/js/sweetalert2.min.js"></script>
+<script src="/assets/sellProduct/js/bootstrap.bundle.min.js"></script>
+<script src="/assets/sellProduct/js/appp.js"></script>
+</body>
+<script>
+    let product = new Product();
+
+    function loadAllProducts() {
+        $.ajax({
+            headers: {
+                "accept": "application/json",
+                "content-type": "application/json"
+            },
+            type: "GET",
+            url: "http://localhost:8080/api/user/products"
+        })
+            .done((data) => {
+                console.log(data)
+                $.each(data, (i, item) => {
+                    console.log("bị lặp rooifX")
+                    product = item;
+                    let str = `
+                            <div >
+                               <div class="product-item men" style="float: left">
+                                    <div class="product discount product_filter">
+                                        <div class="product_image">
+                                            <a>
+                                                <img src="${product.image}" alt="" style=" width: 221px; height: 251px;">
+                                            </a>
+                                        </div>
+                                        <div class="favorite favorite_left"></div>
+                                        <div  class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center">
+                                            <button data-id="${product.id}" class="btn_modalViewProduct" type="button" ><i class="fa fa-heart-o" aria-hidden="true"></i></button>
+                                        </div>
+                                        <div class="product_info">
+                                            <h6 class="product_name"><a href="" >${product.productName}</a></h6>
+                                            <div class="" ><span>${product.price}.VND</span></div>
+                                        </div>
+                                    </div>
+                                    <div class="red_button add_to_cart_button"><a href="#">add to cart</a></div>
+                                </div>
+                            </div>
+
+                    `;
+                    $("#panel-product").prepend(str);
+                })
+                handleViewShowProduct();
+            })
+            .fail(() => {
+                App.SweetAlert.showErrorAlert("List product error")
+            })
+    }
+    function getProductById(productId) {
+        console.log("Vào by te")
+        return $.ajax({
+            "headers": {
+                "accept": "application/json",
+                "content-type": "application/json"
+            },
+            "type": "GET",
+            "url": "http://localhost:8080/api/user/products/show/" + productId
+        })
+            .done((data) => {
+                product = data;
+                console.log(product);
+            })
+            .fail((jqXHR) => {
+                App.SweetAlert.showErrorAlert("Không tìm thấy sản phẩm!!!")
+            })
+    }
+    function handleViewShowProduct() {
+        $('.btn_modalViewProduct').on('click', function () {
+            let id = $(this).data("id");
+            getProductById(id).then(() => {
+                $('#imageShow').attr('src', product.image);
+                $('#productNameShow').val(product.productName);
+                $('#productColoShow').val(product.color);
+                $('#categoryShow').val(product.category.name);
+                console.log(product.category.name)
+                console.log("đay là loại sản pphaamrx")
+                $('#quantityShow').val(product.quantity);
+                $('#priceShow').val(product.price);
+                $('#descriptionShow').val(product.description);
+                $('#imageShow').val(product.image);
+                $('#createdAtShow').val(product.createdAt);
+                $('#idShow').val(product.id);
+                $("#modal_by_product").modal("show");
+            })
+        })
+    }
+    function doSearchProduct() {
+        $('#btnSearchProduct').on('click', function () {
+            let query = $('#searchProduct').val();
+            $("#panel-product").html("")
+            if (query === "") {
+                loadAllProducts();
+                return
+            }
+            $.ajax({
+                "type": "GET",
+                "url": "http://localhost:8080/api/user/products/search/" + query
+            })
+                .done((data) => {
+                    $('#panel-product').html("")
+                    $.each(data, (i, item) => {
+                        product = item;
+                        let str = `
+                            <div >
+                               <div class="product-item men" style="float: left">
+                                    <div class="product discount product_filter">
+                                        <div class="product_image">
+                                            <a>
+                                                <img src="${product.image}" alt="" style=" width: 221px; height: 251px;">
+                                            </a>
+                                        </div>
+                                        <div class="favorite favorite_left"></div>
+                                        <div  class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center">
+                                            <button data-id="${product.id}" class="btn_modalViewProduct" type="button" ><i class="fa fa-eye" aria-hidden="true"></i></button>
+                                        </div>
+                                        <div class="product_info">
+                                            <h6 class="product_name"><a href="" >${product.name}</a></h6>
+                                            <div class="product_price" ><span>${product.price}</span></div>
+                                        </div>
+                                    </div>
+                                    <div class="red_button add_to_cart_button"><a href="#">add to cart</a></div>
+                                </div>
+                            </div>
+
+                    `;
+                        $("#panel-product").prepend(str);
+                    })
+                    handleViewShowProduct();
+                })
+                .fail(() => {
+                    App.SweetAlert.showErrorAlert("Danh sách sản phẩm đang bị lỗi")
+                })
+        })
+    }
+
+    doSearchProduct();
+    $(() => {
+        loadAllProducts();
+    })
+</script>
+
+</html>

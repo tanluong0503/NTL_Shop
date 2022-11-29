@@ -1,0 +1,62 @@
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<th:block th:fragment="modal-create-user">
+
+        <div id="modalCreateUser" class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
+            <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Create User</h5>
+                    </div>
+                    <div class="modal-body">
+                        <div class="modal-alert-danger hide">
+
+
+                        </div>
+
+                        <form id="frmCreateCustomer" method="post">
+                            <fieldset class="row g-3">
+                                <div class="col-6">
+                                    <label class="form-label">First Name:</label>
+                                    <input type="text" class="form-control"  id="firstnameCre" name="firstnameCre">
+                                </div>
+                                <div class="col-6">
+                                    <label class="form-label">Last Name:</label>
+                                    <input type="text" class="form-control"  id="lastnameCre" name="lastnameCre">
+                                </div>
+                                <div class="col-6">
+                                    <label class="form-label">Email:</label>
+                                    <input type="email" class="form-control"  id="EmailCre" name="EmailCre">
+                                </div>
+                                <div class="col-6">
+                                    <label class="form-label">Password:</label>
+                                    <input type="password" class="form-control"  id="passwordCre" name="passwordCre">
+                                </div>
+                                <div class="col-6">
+                                    <label class="form-label">Enter the password:</label>
+                                    <input type="password" class="form-control"  id="passwordConCre" name="passwordConCre">
+                                </div>
+                                <div class="col-6">
+                                    <label class="form-label">Role</label>
+                                    <select class="form-control" id="roleCre" >
+                                        <option value="1">ADMIN</option>
+                                        <option value="2">USER</option>
+                                    </select>
+                                </div>
+
+                            </fieldset>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" id="closes" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" id="btnCreate" class="btn btn-outline-primary btnCreate">
+                            <i class="fa fa-plus" aria-hidden="true"></i>
+                            Create User
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+</th:block>
