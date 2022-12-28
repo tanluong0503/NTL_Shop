@@ -243,20 +243,22 @@
     function handleDeleteShowProduct() {
         $('.btn-delete').on('click', function () {
             let productId = $(this).data("id");
-            Swal.fire({
-                title: "Are you sure to deactive the selected product?",
-                icon: "warning",
-                showCancleButton: true,
-                confirmButtonColor: "#3085d6",
-                cancelButton: "#d33",
-                confirmButtonText: "Yes, deactive it!!",
 
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    doDelete(productId);
+
+                }
             })
-                .then((result) => {
-                    if (result.isConfirmed) {
-                        doDelete(productId);
-                    }
-                })
+
         })
     }
 

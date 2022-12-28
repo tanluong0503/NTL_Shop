@@ -21,7 +21,7 @@
 <body>
 <div id="wrapper">
     <!-- Topbar Start -->
-<!--    <th:block th:replace="/layout/html/navbar-custom::navbar-custom"/>-->
+    <!--    <th:block th:replace="/layout/html/navbar-custom::navbar-custom"/>-->
     <!-- end Topbar --> <!-- ========== Left Sidebar Start ========== -->
     <th:block th:replace="/layout/html/left-side-menu::left-side-menu"/>
     <!-- Left Sidebar End -->
@@ -93,14 +93,12 @@
 <!-- /Right-bar -->
 
 
-
-
 <!-- Right bar overlay-->
 <div class="rightbar-overlay"></div>
 <a href="javascript:void(0);" class="right-bar-toggle demos-show-btn" style="    margin-top: -130px;
         bottom: 211px;
         width: 80px;
-        height: 100px;" >
+        height: 100px;">
     <i class="mdi mdi-settings-outline mdi-spin"></i> &nbsp;Choose Demos
 </a>
 
@@ -108,13 +106,14 @@
 <script>
     let user = new User();
     let role = new Role();
+
     function loadAllUser() {
         $.ajax({
             type: "GET",
             url: "http://localhost:8080/api/users"
         }).done((data) => {
             $.each(data, (i, item) => {
-                user = item
+                user = item;
                 let str = `
                  <tr id="tr_${user.id}">
                     <td></td>
@@ -123,18 +122,8 @@
                     <td>${user.lastName}</td>
                     <td>${user.username}</td>
                     <td>${user.role.code}</td>
-                    <td>${user.status}</td>
                     <td>
-                        <button data-id="${user.id}" class="btn btn-primary btn-update"><i class="fa-sharp fa-solid fa-user-pen"></i></button>
-                    </td>
-                    <td>
-                        <button data-id="${user.id}" class="btn btn-primary btn-delete"><i class="fa-solid fa-trash"></i></button>
-                    </td>
-                    <td>
-                        <button data-id="${user.id}" class="btn btn-primary btn-active"><i class="fa-solid fa-lock-open"></i></i></button>
-                </td>
-                    <td>
-                        <button data-id="${user.id}" class="btn btn-primary btn-block"><i class="fa-solid fa-lock"></i></button>
+                        ${showStatus(user)}
                     </td>
                 </tr>
     `
@@ -169,6 +158,37 @@
         $(".btn-created").on("click", () => {
             $("#modalCreateUser").modal("show");
         })
+    }
+
+    function showStatus(user) {
+        if (user.status) {
+            return `
+                <td>Block</td>
+                <td>
+                    <button data-id="${user.id}" class="btn btn-primary btn-update"><i class="fa-sharp fa-solid fa-user-pen"></i></button>
+                </td>
+                <td>
+                    <button data-id="${user.id}" class="btn btn-primary btn-delete"><i class="fa-solid fa-trash"></i></button>
+                <td>
+                <td>
+                    <button data-id="${user.id}" class="btn btn-warning btn-block"><i class="fa-solid fa-lock"></i></button>
+                </td>
+            `
+        } else {
+            return `
+                <td>Active</td>
+                <td>
+                    <button data-id="${user.id}" class="btn btn-primary btn-update"><i class="fa-sharp fa-solid fa-user-pen"></i></button>
+                </td>
+                <td>
+                    <button data-id="${user.id}" class="btn btn-primary btn-delete"><i class="fa-solid fa-trash"></i></button>
+                <td>
+                <td>
+                    <button data-id="${user.id}" class="btn btn-primary btn-active"><i class="fa-solid fa-lock-open"></i></button>
+                </td>
+
+            `
+        }
     }
 
     function handleShowModalUpdate() {
@@ -213,18 +233,8 @@
                     <td>${user.lastName}</td>
                     <td>${user.username}</td>
                     <td>${user.role.code}</td>
-                    <td>${user.status}</td>
                     <td>
-                        <button data-id="${user.id}" class="btn btn-primary btn-update"><i class="fa-sharp fa-solid fa-user-pen"></i></button>
-                    </td>
-                    <td>
-                        <button data-id="${user.id}" class="btn btn-primary btn-delete"><i class="fa-solid fa-trash"></i></button>
-                    </td>
-                    <td>
-                        <button data-id="${user.id}" class="btn btn-primary btn-active"><i class="fa-solid fa-lock-open"></i></i></button>
-                </td>
-                    <td>
-                        <button data-id="${user.id}" class="btn btn-primary btn-block"><i class="fa-solid fa-lock"></i></button>
+                        ${showStatus(user)}
                     </td>
                 </tr>
     `;
@@ -251,9 +261,7 @@
                     let str = `<label id="message-error" class="error" for="message">${msg}</label>`;
 
                     $('#modalCreateUser .modal-alert-danger').append(str);
-                }
-                else
-                if (jqXHR.responseJSON) {
+                } else if (jqXHR.responseJSON) {
                     $.each(jqXHR.responseJSON, (key, item) => {
                         let str = `<label id="${key}-error" class="error" for="${key}">${item}</label>`;
                         $("#" + key).addClass("error");
@@ -295,18 +303,8 @@
                     <td>${data.lastName}</td>
                     <td>${data.username}</td>
                     <td>${data.role.code}</td>
-                    <td>${data.status}</td>
                     <td>
-                        <button data-id="${user.id}" class="btn btn-primary btn-update"><i class="fa-sharp fa-solid fa-user-pen"></i></button>
-                    </td>
-                    <td>
-                        <button data-id="${user.id}" class="btn btn-primary btn-delete"><i class="fa-solid fa-trash"></i></button>
-                    </td>
-                    <td>
-                        <button data-id="${user.id}" class="btn btn-primary btn-active"><i class="fa-solid fa-lock-open"></i></i></button>
-                </td>
-                    <td>
-                        <button data-id="${user.id}" class="btn btn-primary btn-block"><i class="fa-solid fa-lock"></i></button>
+                        ${showStatus(data)}
                     </td>
                 </tr>
             `
@@ -327,24 +325,21 @@
                     let str = `<label id="message-error" class="error" for="message">${msg}</label>`;
 
                     $('#modalUpdateUser .modal-alert-danger').append(str);
-                }
-                else {
+                } else {
                     if (jqXHR.status === 403) {
                         let msg = "You are not authorized to perform this function !!";
 
                         let str = `<label id="message-error" class="error" for="message">${msg}</label>`;
 
                         $('#modalUpdateUser .modal-alert-danger').append(str);
-                    }
-                    else {
+                    } else {
                         if (jqXHR.responseJSON.message) {
                             let msg = jqXHR.responseJSON.message;
 
                             let str = `<label id="message-error" class="error" for="message">${msg}</label>`;
 
                             $('#modalUpdateUser .modal-alert-danger').append(str);
-                        }
-                        else if (jqXHR.responseJSON) {
+                        } else if (jqXHR.responseJSON) {
                             $.each(jqXHR.responseJSON, (key, item) => {
                                 let str = `<label id="${key}-error" class="error" for="${key}">${item}</label>`;
                                 $("#" + key).addClass("error");
@@ -424,18 +419,8 @@
                     <td>${data.lastName}</td>
                     <td>${data.username}</td>
                     <td>${data.role.code}</td>
-                    <td>${data.status}</td>
                     <td>
-                        <button data-id="${user.id}" class="btn btn-primary btn-update"><i class="fa-sharp fa-solid fa-user-pen"></i></button>
-                    </td>
-                    <td>
-                        <button data-id="${user.id}" class="btn btn-primary btn-delete"><i class="fa-solid fa-trash"></i></button>
-                    </td>
-                    <td>
-                        <button data-id="${user.id}" class="btn btn-primary btn-active"><i class="fa-solid fa-lock-open"></i></i></button>
-                </td>
-                    <td>
-                        <button data-id="${user.id}" class="btn btn-primary btn-block"><i class="fa-solid fa-lock"></i></button>
+                        ${showStatus(data)}
                     </td>
                 </tr>
             `
@@ -452,8 +437,7 @@
                         let msg = "You are not authorized to perform this function !!";
                         App.SweetAlert.showErrorAlert(msg)
 
-                    }
-                    else {
+                    } else {
                         App.IziToast.showErrorAlert("Status change failed");
 
                     }
@@ -485,18 +469,8 @@
                     <td>${data.lastName}</td>
                     <td>${data.username}</td>
                     <td>${data.role.code}</td>
-                    <td>${data.status}</td>
                     <td>
-                        <button data-id="${user.id}" class="btn btn-primary btn-update"><i class="fa-sharp fa-solid fa-user-pen"></i></button>
-                    </td>
-                    <td>
-                        <button data-id="${user.id}" class="btn btn-primary btn-delete"><i class="fa-solid fa-trash"></i></button>
-                    </td>
-                    <td>
-                        <button data-id="${user.id}" class="btn btn-primary btn-active"><i class="fa-solid fa-lock-open"></i></i></button>
-                </td>
-                    <td>
-                        <button data-id="${user.id}" class="btn btn-primary btn-block"><i class="fa-solid fa-lock"></i></button>
+                        ${showStatus(data)}
                     </td>
                 </tr>
             `
@@ -514,8 +488,7 @@
                         let msg = "You are not authorized to perform this function !!";
                         App.SweetAlert.showErrorAlert(msg)
 
-                    }
-                    else {
+                    } else {
                         App.IziToast.showErrorAlert("Status change failed");
 
                     }

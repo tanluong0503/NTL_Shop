@@ -112,7 +112,6 @@
             url: "http://localhost:8080/api/users"
         }).done((data) => {
             $.each(data, (i, item) => {
-                user = item
                 let str = `
                  <tr id="tr_${user.id}">
                     <td></td>
@@ -128,14 +127,20 @@
                     <td>
                     <button data-id="${user.id}" class="btn btn-primary btn-delete"><i class="fa-solid fa-trash"></i></button>
                     </td>
-                    <td>
-                    <button data-id="${user.id}" class="btn btn-primary btn-active"><i class="fa-solid fa-lock-open"></i></i></button>
-                    </td>
-                    <td>
-                    <button data-id="${user.id}" class="btn btn-primary btn-block"><i class="fa-solid fa-lock"></i></button>
-                     </td>
+                    ${user.status} ? (
+                        <td>
+                        <button data-id="${user.id}" class="btn btn-primary btn-active"><i class="fa-solid fa-lock-open"></i></i></button>
+                        </td>
+                    ) : (
+                        <td>
+                        <button data-id="${user.id}" class="btn btn-primary btn-block"><i class="fa-solid fa-lock"></i></button>
+                         </td>
+                    )
+
+
                 </tr>
     `
+                user = item
 
                 $("#tableListUser tbody").append(str)
 

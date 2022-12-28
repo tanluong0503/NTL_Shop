@@ -65,7 +65,7 @@ public class UserRestController {
         if(bindingResult.hasErrors()){
             return appUtil.mapErrorToResponse(bindingResult);
         }
-        userDTO.setStatus("Active");
+        userDTO.setStatus(true);
         User user = userService.saveWithOutPassword(userDTO.toUser());
         return new ResponseEntity<>(user.toUserDTO(), HttpStatus.ACCEPTED);
     }
@@ -76,7 +76,7 @@ public class UserRestController {
             return appUtil.mapErrorToResponse(bindingResult);
         }
 
-        userDTO.setStatus("Block");
+        userDTO.setStatus(false);
         User user = userService.saveWithOutPassword(userDTO.toUser());
         return new ResponseEntity<>(user.toUserDTO(), HttpStatus.ACCEPTED);
     }

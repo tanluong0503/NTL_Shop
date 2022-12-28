@@ -1,5 +1,6 @@
 package com.cg.controller;
 
+import com.cg.exception.DataInputException;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
@@ -30,7 +31,7 @@ public class HomeController {
     }
     @GetMapping("/home")
     public ModelAndView showHomePage() {
-        ModelAndView modelAndView = new ModelAndView();
+         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("/home/index");
         String username = getPrincipal();
         modelAndView.addObject("user",username);

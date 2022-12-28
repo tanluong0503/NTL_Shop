@@ -15,6 +15,8 @@ public interface IUserService extends IGeneralService<User>, UserDetailsService 
 
 //    List<UserDTO> findAllUserDTO();
 
+    Optional<User> findUserByUsername(String username);
+
     List<UserDTO> findAllByIdNot(Long id);
 
     Boolean existById(Long id);

@@ -37,7 +37,7 @@ public class User extends BaseEntity {
     private String password;
 
     @Column
-    private String status;
+    private Boolean status;
 
 
     @ManyToOne

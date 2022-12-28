@@ -43,14 +43,14 @@ public class UserDTO {
     @Valid
     private RoleDTO role;
 
-    private String status;
+    private Boolean status;
 
     public UserDTO(Long id, String username) {
         this.id = id;
         this.username = username;
     }
 
-    public UserDTO(Long id, String firstName,String password,String lastName, String username, Role role,String status) {
+    public UserDTO(Long id, String firstName,String password,String lastName, String username, Role role,Boolean status) {
         this.id = id;
         this.firstName = firstName;
         this.password = password;

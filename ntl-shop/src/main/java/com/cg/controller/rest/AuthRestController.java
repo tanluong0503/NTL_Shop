@@ -63,18 +63,17 @@ public class AuthRestController {
 
         Optional<Role> opRole = roleService.findById(userDTO.getRole().getId());
 
-        if (!opRole.isPresent()){
+        if (!opRole.isPresent()) {
             throw new DataInputException("Invalid account role");
         }
         userDTO.setId(0L);
 
         try {
-            userDTO.setStatus("Active");
-              User userDTO1 = userService.save(userDTO.toUser());
+            userDTO.setStatus(false);
+            User userDTO1 = userService.save(userDTO.toUser());
 
             return new ResponseEntity<>(userDTO1, HttpStatus.CREATED);
-        }
-        catch (DataIntegrityViolationException e) {
+        } catch (DataIntegrityViolationException e) {
             throw new DataInputException("Account information is not valid, please check the information again!!");
 
         }
@@ -83,50 +82,46 @@ public class AuthRestController {
 
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody User user) {
-        Optional <User> userCheck = userService.findByUsername(user.getUsername());
+        Optional<User> userCheck = userService.findByUsername(user.getUsername());
 
         if (!userCheck.isPresent()) {
-            throw new EmailExistsException("Account does not exist");
+            throw new EmailExistsException("Account does not exist 2");
         }
 
-        if(userCheck.get().getStatus().equals("Block")){
+        if (userCheck.get().getStatus().equals(true)) {
             throw new EmailExistsException("Account has been locked");
         }
 
-        if (userCheck.get().getStatus().equals("Active")) {
-            Authentication authentication = authenticationManager.authenticate(
-                    new UsernamePasswordAuthenticationToken(user.getUsername(), user.getPassword()));
+        Authentication authentication = authenticationManager.authenticate(
+                new UsernamePasswordAuthenticationToken(user.getUsername(), user.getPassword()));
 
-            SecurityContextHolder.getContext().setAuthentication(authentication);
+        SecurityContextHolder.getContext().setAuthentication(authentication);
 
-            String jwt = jwtService.generateTokenLogin(authentication);
-            UserDetails userDetails = (UserDetails) authentication.getPrincipal();
-            User currentUser = userService.getByUsername(user.getUsername());
+        String jwt = jwtService.generateTokenLogin(authentication);
+        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+        User currentUser = userService.getByUsername(user.getUsername());
 
-            JwtResponse jwtResponse = new JwtResponse(
-                    jwt,
-                    currentUser.getId(),
-                    userDetails.getUsername(),
-                    currentUser.getUsername(),
-                    userDetails.getAuthorities()
-            );
-            ResponseCookie springCookie = ResponseCookie.from("JWT", jwt)
-                    .httpOnly(false)
-                    .secure(false)
-                    .path("/")
-                    .maxAge(60 * 1000)
-                    .domain("localhost")
-                    .build();
+        JwtResponse jwtResponse = new JwtResponse(
+                jwt,
+                currentUser.getId(),
+                userDetails.getUsername(),
+                currentUser.getUsername(),
+                userDetails.getAuthorities()
+        );
+        ResponseCookie springCookie = ResponseCookie.from("JWT", jwt)
+                .httpOnly(false)
+                .secure(false)
+                .path("/")
+                .maxAge(60 * 1000)
+                .domain("localhost")
+                .build();
 
-            System.out.println(jwtResponse);
+        System.out.println(jwtResponse);
 
-            return ResponseEntity
-                    .ok()
-                    .header(HttpHeaders.SET_COOKIE, springCookie.toString())
-                    .body(jwtResponse);
-        } else {
-            throw new EmailExistsException("Account does not exist");
-        }
+        return ResponseEntity
+                .ok()
+                .header(HttpHeaders.SET_COOKIE, springCookie.toString())
+                .body(jwtResponse);
 
 
     }

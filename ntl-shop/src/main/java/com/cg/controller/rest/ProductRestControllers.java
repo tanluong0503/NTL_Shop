@@ -1,5 +1,6 @@
 package com.cg.controller.rest;
 
+import com.cg.exception.DataInputException;
 import com.cg.model.Product;
 import com.cg.model.dto.CategoryDTO;
 import com.cg.model.dto.ProductDTO;
@@ -47,6 +48,8 @@ public class ProductRestControllers {
     public ResponseEntity<?> doCreateProduct (@Validated @RequestBody ProductDTO productDTO, BindingResult bindingResult) {
 
         new ProductDTO().validate(productDTO, bindingResult);
+
+
         Product newProduct;
         try {
 
@@ -70,7 +73,7 @@ public class ProductRestControllers {
 
 
     @GetMapping("/search/{query}")
-    public ResponseEntity<?> seachListProduct(@PathVariable String query) {
+    public ResponseEntity<?> searchListProduct(@PathVariable String query) {
         List<ProductDTO> productDTOList = productService.findProductByValue(query);
         return new ResponseEntity<>(productDTOList, HttpStatus.OK);
     }

@@ -43,13 +43,18 @@ public class UserServiceImpl implements IUserService {
     }
 
     @Override
+    public Optional<UserDTO> findUserDTOByUsername(String username) {
+        return Optional.empty();
+    }
+
+    @Override
     public Optional<User> findByUsername(String username) {
         return userRepository.findByUsername(username);
     }
 
     @Override
-    public Optional<UserDTO> findUserDTOByUsername(String username) {
-        return userRepository.findUserDTOByUsername(username);
+    public Optional<User> findUserByUsername(String username) {
+        return userRepository.findByUsername(username);
     }
 
 
