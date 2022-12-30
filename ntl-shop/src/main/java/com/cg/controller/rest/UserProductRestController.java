@@ -48,7 +48,7 @@ public class UserProductRestController {
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
     @GetMapping("/search/{query}")
-    public ResponseEntity<?> seachListProduct(@PathVariable String query) {
+    public ResponseEntity<?> searchListProduct(@PathVariable String query) {
         List<ProductDTO> productDTOList = productService.findProductByValue(query);
         return new ResponseEntity<>(productDTOList, HttpStatus.OK);
     }
